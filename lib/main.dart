@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/cadastro.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

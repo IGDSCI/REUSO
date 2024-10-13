@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Home.dart';
+import 'package:flutter_application_1/aula.dart';
 import 'package:flutter_application_1/cadastro.dart';
+import 'package:flutter_application_1/home.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class LoginStl extends StatelessWidget {
@@ -10,8 +11,9 @@ class LoginStl extends StatelessWidget {
     return MaterialApp(
       home: const LoginStf(),
       routes: {
-        '/home': (context) => const HomeStl(),
+        '/aula': (context) => const AulaStl(),
         '/cadastro': (context) => const CadastroStl(),
+        '/home': (context) => const HomeStl(),
       },
     );
   }

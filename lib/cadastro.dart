@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/Home.dart';
+import 'package:flutter_application_1/aula.dart';
 import 'package:flutter_application_1/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -11,7 +11,7 @@ class CadastroStl extends StatelessWidget {
     return MaterialApp(
       home: const CadastroStf(),
       routes: {
-        '/home': (context) => const HomeStl(),
+        '/aula': (context) => const AulaStl(),
         '/login': (context) => const LoginStl(),
       },
     );
@@ -40,7 +40,7 @@ class _CadastroStfState extends State<CadastroStf> {
 
       if(!mounted) return;
 
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const HomeStl()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const AulaStl()));
     } on AuthException catch (e){
       print(e);
     }

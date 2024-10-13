@@ -63,39 +63,51 @@ class _AulaStfState extends State<AulaStf> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const Text(
-              'Home',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 16),
-            TextField(
-              controller: _nomeController,
-              decoration: const InputDecoration(
-                labelText: 'Nome',
-                border: OutlineInputBorder(),
+            Row(mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+              SizedBox(
+                width: 500,
+                child: TextField(
+                  controller: _nomeController,
+                  cursorColor: Colors.black,
+                  decoration: const InputDecoration(
+                    hintText: 'Insira o nome da aula',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.menu_book_rounded),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
+                    )
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: novaAula,
-              child: const Text('Criar'),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: singOut,
-              child: const Text('Sair'),
-            ),
+
+              ElevatedButton(
+                onPressed: novaAula,
+                child: const Text('Criar'),
+              ),
+
+              ElevatedButton(
+                onPressed: singOut,
+                child: const Text('Sair'),
+              ),
+            ],),
+            
             const SizedBox(height: 32),
             Expanded(
               child: StreamBuilder<List<Map<String, dynamic>>>(
                 stream: aulaStream,
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
+                  if (!snapshot.hasData) {
                     return const Center(child: CircularProgressIndicator());
-                  } else if (snapshot.hasError) {
-                    return Center(child: Text('Erro: ${snapshot.error}'));
-                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                    return const Center(child: Text('Nenhuma aula encontrada.'));
                   } else {
                     final aulas = snapshot.data!;
                     return ListView.builder(

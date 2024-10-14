@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/aula.dart';
+import 'package:flutter_application_1/exercicio.dart';
+import 'package:flutter_application_1/perfil.dart';
 
 class HomeStl extends StatelessWidget {
   const HomeStl({super.key});
@@ -9,9 +11,12 @@ class HomeStl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: const HomeStf(),
       routes: {
         '/aula': (context) => const AulaStl(),
+        '/exercicio': (context) => const ExercicioStl(),
+        '/perfil': (context) => const PerfilStl(),
       },
     );
   }
@@ -34,6 +39,31 @@ class _HomeStfState extends State<HomeStf> {
           style: TextStyle(color: Colors.white),
         )), 
         backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.menu,
+            size: 32,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 24),
+            child: IconButton(
+              icon: const Icon(
+                Icons.person,
+                size: 32,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/perfil');
+              },
+            ),
+          ),
+        ],
       ),
       body: Row(mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -43,7 +73,7 @@ class _HomeStfState extends State<HomeStf> {
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
               onTap: (){
-                Navigator.of(context).pushReplacementNamed('/aula');
+                Navigator.of(context).pushNamed('/aula');
               },
               child: Container(
                 height: 100,
@@ -56,11 +86,19 @@ class _HomeStfState extends State<HomeStf> {
 
           const SizedBox(height: 24),
 
-          Container(
-            height: 100,
-            width: 100, 
-            color: Colors.grey,
-            child: const Center(child: Text('EXERCICIOS')),
+          MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: GestureDetector(
+              onTap: (){
+                Navigator.of(context).pushNamed('/exercicio');
+              },
+              child: Container(
+                height: 100,
+                width: 100, 
+                color: Colors.grey,
+                child: const Center(child: Text('EXERCÍCIOS')),
+              ),
+            ),
           ),
         ],),
 

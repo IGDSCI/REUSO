@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_application_1/aula.dart';
+import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -9,9 +9,9 @@ class CadastroStl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: const CadastroStf(),
       routes: {
-        '/aula': (context) => const AulaStl(),
         '/login': (context) => const LoginStl(),
       },
     );
@@ -25,27 +25,44 @@ class CadastroStf extends StatefulWidget {
   State<CadastroStf> createState() => _CadastroStfState();
 }
 
-
 class _CadastroStfState extends State<CadastroStf> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _usuarioController = TextEditingController();
 
-  Future<void> singUp() async{
-    try{
-      await Supabase.instance.client.auth.signUp(
-        password: _passwordController.text.trim(),
+  Future<void> singUp() async {
+    try {
+      final response = await Supabase.instance.client.auth.signUp(
         email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
       );
 
-      if(!mounted) return;
+      final user = response.user;
+      if (user != null) {
+        // Chama a função para salvar o usuário com o userId
+        await novoUsuario(user.id);
+      }
 
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const AulaStl()));
-    } on AuthException catch (e){
+      if (!mounted) return;
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomeStl()));
+    } on AuthException catch (e) {
       print(e);
     }
   }
-  
+
+  Future<void> novoUsuario(String userId) async {
+    final nome = _usuarioController.text.trim();
+    if (nome.isNotEmpty) {
+      await Supabase.instance.client.from('usuarios').insert({
+        'nome': nome,
+        'userid': userId,
+      });
+      _usuarioController.clear();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,128 +71,120 @@ class _CadastroStfState extends State<CadastroStf> {
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 500),
-            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              const Text(
-                'Cadastro',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
-              ),
-              
-              const SizedBox(height: 16),
-            
-              TextField(
-                controller: _emailController,
-                cursorColor: Colors.black,
-                decoration: const InputDecoration(
-                  hintText: 'Email',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.email),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
-                  )
+                const Text(
+                  'Cadastro',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
                 ),
-              ),
-            
-              const SizedBox(height: 16),
-            
-              TextField(
-                controller: _passwordController,
-                cursorColor: Colors.black,
-                obscureText: true,
-                decoration: const InputDecoration(
-                  hintText: 'Senha',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _emailController,
+                  cursorColor: Colors.black,
+                  decoration: const InputDecoration(
+                    hintText: 'Email',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.email),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
                     ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
-                  )
-                ),
-              ),
-                  
-              const SizedBox(height: 16),
-            
-              TextField(
-                controller: _confirmPasswordController,
-                obscureText: true,
-                cursorColor: Colors.black,
-                decoration: const InputDecoration(
-                  hintText: 'Confirme sua senha',
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.lock),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
-                  )
-                ),
-              ),
-            
-              const SizedBox(height: 16),
-            
-              SizedBox(
-                width: 200,
-                child: ElevatedButton(
-                  onPressed: singUp,
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 33, 54, 243)),
-                    elevation: MaterialStateProperty.all<double>(0),
-                  ),
-                  child: const Text(
-                    'Cadastrar',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
-              ),
-            
-              const SizedBox(height: 8),
-              
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Já tem conta?'),
-                  const SizedBox(width: 4),
-                  MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).pushReplacementNamed('/login');
-                      },
-                      child: const Text(
-                        'Login',
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 33, 54, 243),
-                        ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
                       ),
                     ),
                   ),
-                ],
-              ),
-            ],),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _passwordController,
+                  cursorColor: Colors.black,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    hintText: 'Senha',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.lock),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                TextField(
+                  controller: _usuarioController,
+                  cursorColor: Colors.black,
+                  decoration: const InputDecoration(
+                    hintText: 'Insira seu nome de usuário',
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(179, 143, 137, 137),
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                SizedBox(
+                  width: 200,
+                  child: ElevatedButton(
+                    onPressed: singUp,
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          const Color.fromARGB(255, 33, 54, 243)),
+                      elevation: MaterialStateProperty.all<double>(0),
+                    ),
+                    child: const Text(
+                      'Cadastrar',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text('Já tem conta?'),
+                    const SizedBox(width: 4),
+                    MouseRegion(
+                      cursor: SystemMouseCursors.click,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushReplacementNamed('/login');
+                        },
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 33, 54, 243),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

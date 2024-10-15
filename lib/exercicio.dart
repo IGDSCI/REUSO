@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/perfil.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class ExercicioStl extends StatelessWidget {
@@ -6,9 +8,13 @@ class ExercicioStl extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: ExercicioStf(),
+      routes: {
+        '/home': (context) => const HomeStl(),
+        '/perfil': (context) => const PerfilStl(),
+      },
     );
   }
 }
@@ -87,8 +93,37 @@ class _ExercicioStfState extends State<ExercicioStf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Adicionar Exercício'),
+      appBar: AppBar(title: const Center(
+        child: Text(
+          'MELP',
+          style: TextStyle(color: Colors.white),
+        )), 
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_rounded,
+            size: 32,
+            color: Colors.white,
+          ), 
+          onPressed: (){
+            Navigator.of(context).pushNamed('/home');
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              icon: const Icon(
+                Icons.person,
+                size: 32,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/perfil');
+              },
+            ),
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

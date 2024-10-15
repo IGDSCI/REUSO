@@ -66,6 +66,13 @@ class _CadastroStfState extends State<CadastroStf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Center(
+        child: Text(
+          'MELP',
+          style: TextStyle(color: Colors.white),
+        )), 
+        backgroundColor: Colors.black,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: Center(

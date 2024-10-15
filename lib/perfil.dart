@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/home.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PerfilStl extends StatelessWidget {
@@ -7,7 +8,12 @@ class PerfilStl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: const PerfilStf(),
+      routes: {
+        '/home': (context) => const HomeStl(),
+        '/perfil': (context) => const PerfilStl(),
+      },
     );
   }
 }
@@ -65,6 +71,38 @@ class _PerfilStfState extends State<PerfilStf> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: const Center(
+        child: Text(
+          'MELP',
+          style: TextStyle(color: Colors.white),
+        )), 
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back_rounded,
+            size: 32,
+            color: Colors.white,
+          ), 
+          onPressed: (){
+            Navigator.of(context).pushNamed('/home');
+          },
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              icon: const Icon(
+                Icons.person,
+                size: 32,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.of(context).pushNamed('/perfil');
+              },
+            ),
+          ),
+        ],
+      ),
       body: Center(
         child: errorMessage != null
             ? Text(errorMessage!, style: TextStyle(color: Colors.red))

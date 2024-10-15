@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/aula.dart';
 import 'package:flutter_application_1/exercicio.dart';
+import 'package:flutter_application_1/login.dart';
 import 'package:flutter_application_1/perfil.dart';
 
 class HomeStl extends StatelessWidget {
@@ -17,6 +18,7 @@ class HomeStl extends StatelessWidget {
         '/aula': (context) => const AulaStl(),
         '/exercicio': (context) => const ExercicioStl(),
         '/perfil': (context) => const PerfilStl(),
+        '/login': (context) => const LoginStl(),
       },
     );
   }
@@ -41,17 +43,17 @@ class _HomeStfState extends State<HomeStf> {
         backgroundColor: Colors.black,
         leading: IconButton(
           icon: const Icon(
-            Icons.menu,
+            Icons.arrow_back_rounded,
             size: 32,
             color: Colors.white,
-          ),
-          onPressed: () {
-            
+          ), 
+          onPressed: (){
+            Navigator.of(context).pushNamed('/login');
           },
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 24),
+            padding: const EdgeInsets.only(right: 8),
             child: IconButton(
               icon: const Icon(
                 Icons.person,

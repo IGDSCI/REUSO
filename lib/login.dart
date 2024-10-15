@@ -129,7 +129,7 @@ class _LoginStfState extends State<LoginStf> {
                   ),
                   child: const Text(
                     'Logar',
-                    style: TextStyle(color: Colors.white),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -151,6 +151,7 @@ class _LoginStfState extends State<LoginStf> {
                         'Cadastre-se',
                         style: TextStyle(
                           color: Color.fromARGB(255, 33, 54, 243),
+                          fontWeight: FontWeight.bold
                         ),
                       ),
                     ),

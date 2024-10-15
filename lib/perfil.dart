@@ -40,26 +40,26 @@ class _PerfilStfState extends State<PerfilStf> {
     final user = Supabase.instance.client.auth.currentUser;
     if (user != null) {
       setState(() {
-        userId = user.id; // Armazena o userId do usuário autenticado
+        userId = user.id;
       });
-      await _fetchUserName(userId); // Busca o nome do usuário na tabela 'usuarios'
+      await _fetchUserName(userId);
     }
   }
 
   Future<void> _fetchUserName(String? userId) async {
-    if (userId == null) return; // Verifica se userId é nulo
+    if (userId == null) return;
 
     final response = await Supabase.instance.client
-        .from('usuarios') // Nome da tabela
-        .select('nome') // Campo a ser selecionado
-        .eq('userid', userId) // Filtra pelo userId
-        .single() // Garante que apenas um registro seja retornado
+        .from('usuarios')
+        .select('nome')
+        .eq('userid', userId)
+        .single()
         .execute();
 
     if (response.status == 200) {
       setState(() {
-        userName = response.data['nome']; // Armazena o nome do usuário
-        errorMessage = null; // Reseta a mensagem de erro
+        userName = response.data['nome'];
+        errorMessage = null;
       });
     } else {
       setState(() {

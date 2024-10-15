@@ -164,7 +164,7 @@ class _CadastroStfState extends State<CadastroStf> {
                     ),
                     child: const Text(
                       'Cadastrar',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
@@ -184,6 +184,7 @@ class _CadastroStfState extends State<CadastroStf> {
                           'Login',
                           style: TextStyle(
                             color: Color.fromARGB(255, 33, 54, 243),
+                            fontWeight: FontWeight.bold
                           ),
                         ),
                       ),

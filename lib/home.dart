@@ -74,54 +74,103 @@ class _HomeStfState extends State<HomeStf> {
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).pushNamed('/aula');
               },
-              child: Container(
-                height: 100,
-                width: 100, 
-                color: Colors.grey,
-                child: const Center(child: Text('AULA')),
+              child: Material(
+                elevation: 10,
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 107, 33, 243),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'AULA',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
+
 
           const SizedBox(height: 24),
 
           MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
-              onTap: (){
+              onTap: () {
                 Navigator.of(context).pushNamed('/exercicio');
               },
-              child: Container(
-                height: 100,
-                width: 100, 
-                color: Colors.grey,
-                child: const Center(child: Text('EXERCÍCIOS')),
+              child: Material(
+                elevation: 10, 
+                borderRadius: BorderRadius.circular(8),
+                child: Container(
+                  height: 150,
+                  width: 150,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 33, 54, 243),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'EXERCÍCIOS',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
+          )
+
         ],),
 
         const SizedBox(width: 24),
 
         Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Container(
-            height: 100,
-            width: 100, 
-            color: Colors.grey,
-            child: const Center(child: Text('SUPORTE')),
+          Material(
+            elevation: 10,
+            borderRadius: BorderRadius.circular(8),
+            child: Container(
+              height: 150,
+              width: 150,  
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8)), 
+                color: Color.fromARGB(255, 33, 54, 243),
+              ),
+              child: const Center(child: Text(
+                'SUPORTE',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                )
+              ),
+            ),
           ),
+
 
           const SizedBox(height: 24),
 
-          Container(
-            height: 100,
-            width: 100, 
-            color: Colors.grey,
-            child: const Center(child: Text('AJUSTES')),
+          Material(
+            elevation: 10,
+            borderRadius: BorderRadius.circular(8),
+            child: Container(
+              height: 150,
+              width: 150,  
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(8)), 
+                color: Color.fromARGB(255, 107, 33, 243),
+              ),
+              child: const Center(child: Text(
+                'AJUSTES',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+                )
+              ),
+            ),
           ),
         ],)
       ],),

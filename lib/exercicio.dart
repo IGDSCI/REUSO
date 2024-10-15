@@ -11,7 +11,7 @@ class ExercicioStl extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ExercicioStf(),
+      home: const ExercicioStf(),
       routes: {
         '/home': (context) => const HomeStl(),
         '/perfil': (context) => const PerfilStl(),
@@ -289,7 +289,7 @@ class _ExercicioStfState extends State<ExercicioStf> {
                       final exercicioId = exercicio['id'].toString();
                   
                       return Card(
-                        color: Color.fromARGB(255, 158, 157, 157),
+                        color: const Color.fromARGB(255, 158, 157, 157),
                         margin: const EdgeInsets.symmetric(vertical: 8),
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
@@ -470,18 +470,18 @@ class _ExercicioStfState extends State<ExercicioStf> {
                                                   });
                                                   Navigator.pop(context);
                                                 },
+                                                style: ButtonStyle(
+                                                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 50, 97, 52)),
+                                                ),
                                                 child: const Text(
                                                   'Salvar',
                                                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                                                ),
-                                                style: ButtonStyle(
-                                                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 50, 97, 52)),
                                                 ),
                                               ),
                                               TextButton(
                                                 onPressed: () => Navigator.pop(context),
                                                 style: ButtonStyle(
-                                                  backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 129, 47, 47)),
+                                                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 129, 47, 47)),
                                                 ),
                                                 child: const Text(
                                                   'Cancelar',
@@ -519,7 +519,7 @@ class _ExercicioStfState extends State<ExercicioStf> {
 
                                               TextButton(
                                                 style: ButtonStyle(
-                                                  backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 129, 47, 47)),
+                                                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 129, 47, 47)),
                                                 ),
                                                 onPressed: () {
                                                   Navigator.pop(context, false);

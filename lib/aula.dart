@@ -10,7 +10,7 @@ class AulaStl extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AulaStf(),
+      home: const AulaStf(),
       routes: {
         '/home': (context) => const HomeStl(),
         '/perfil': (context) => const PerfilStl(),
@@ -49,7 +49,6 @@ class _AulaStfState extends State<AulaStf> {
         _nomeController.clear();
         _loadAulas();
       } else {
-        print('Erro ao inserir aula: ');
         _loadAulas();
       }
     }
@@ -62,7 +61,7 @@ class _AulaStfState extends State<AulaStf> {
         aulas = response.data; // Armazena as aulas na lista
       });
     } else {
-      print('Erro ao carregar aulas:');
+      
     }
   }
 
@@ -116,52 +115,53 @@ class _AulaStfState extends State<AulaStf> {
         child: Column(
           children: [
             TextField(
-                controller: _nomeController,
-                cursorColor: Colors.black,
-                decoration: const InputDecoration(
-                  hintText: 'Nome da Aula',
-                  border: OutlineInputBorder(),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
+              controller: _nomeController,
+              cursorColor: Colors.black,
+              decoration: const InputDecoration(
+                hintText: 'Nome da Aula',
+                border: OutlineInputBorder(),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(179, 143, 137, 137),
                   ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(6)),
-                    borderSide: BorderSide(
-                      color: Color.fromARGB(179, 143, 137, 137),
-                    ),
-                  )
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                  borderSide: BorderSide(
+                    color: Color.fromARGB(179, 143, 137, 137),
+                  ),
+                )
               ),
+            ),
 
-              const SizedBox(height: 8),
+            const SizedBox(height: 8),
 
             SizedBox(
-                width: 200,
-                child: ElevatedButton(
-                  onPressed: novaAula,
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 33, 54, 243)),
-                    elevation: MaterialStateProperty.all<double>(0),
-                  ),
-                  child: const Text(
-                    'Adicionar aula',
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
+              width: 200,
+              child: ElevatedButton(
+                onPressed: novaAula,
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 33, 54, 243)),
+                  elevation: MaterialStateProperty.all<double>(0),
+                ),
+                child: const Text(
+                  'Adicionar aula',
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ),
+            ),
+
             const SizedBox(height: 16),
+
             Expanded(
               child: ListView.builder(
                 itemCount: aulas.length,
                 itemBuilder: (context, index) {
                   final aula = aulas[index];
                   final aulaId = aula['id'].toString();
-
                   return Card(
-                    color: Color.fromARGB(255, 158, 157, 157),
+                    color: const Color.fromARGB(255, 158, 157, 157),
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -220,7 +220,7 @@ class _AulaStfState extends State<AulaStf> {
                                           ),
                                           TextButton(
                                             style: ButtonStyle(
-                                              backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 129, 47, 47)),
+                                              backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 129, 47, 47)),
                                             ),
                                             onPressed: () => Navigator.pop(context),
                                             child: const Text(
@@ -259,7 +259,7 @@ class _AulaStfState extends State<AulaStf> {
 
                                           TextButton(
                                             style: ButtonStyle(
-                                              backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 129, 47, 47)),
+                                              backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 129, 47, 47)),
                                             ),
                                             onPressed: () {
                                               Navigator.pop(context, false);

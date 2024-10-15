@@ -39,7 +39,6 @@ class _CadastroStfState extends State<CadastroStf> {
 
       final user = response.user;
       if (user != null) {
-        // Chama a função para salvar o usuário com o userId
         await novoUsuario(user.id);
       }
 

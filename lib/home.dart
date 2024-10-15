@@ -84,7 +84,7 @@ class _HomeStfState extends State<HomeStf> {
                   height: 150,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 107, 33, 243),
+                    color: const Color.fromARGB(255, 107, 33, 243),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(
@@ -114,7 +114,7 @@ class _HomeStfState extends State<HomeStf> {
                   height: 150,
                   width: 150,
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 33, 54, 243),
+                    color: const Color.fromARGB(255, 33, 54, 243),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Center(

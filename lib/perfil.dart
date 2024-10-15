@@ -134,14 +134,14 @@ class _PerfilStfState extends State<PerfilStf> {
               ),
             ],
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 width: 100,
                 height: 100,
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 104, 104, 104),
+                  color: const Color.fromARGB(255, 104, 104, 104),
                   border: Border.all(
                     color: Colors.black,
                     width: 4,
@@ -153,13 +153,13 @@ class _PerfilStfState extends State<PerfilStf> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(width: 16,),
+              const SizedBox(width: 16,),
               errorMessage != null
                   ? Text(errorMessage!, style: const TextStyle(color: Colors.red))
                   : userName != null
                       ? Text(
                         'Nome: $userName',
-                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       )
                       : userId != null
                           ? const Text('Carregando nome...')

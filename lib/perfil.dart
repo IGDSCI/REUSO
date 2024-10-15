@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
+import 'package:flutter_application_1/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class PerfilStl extends StatelessWidget {
@@ -13,6 +14,7 @@ class PerfilStl extends StatelessWidget {
       routes: {
         '/home': (context) => const HomeStl(),
         '/perfil': (context) => const PerfilStl(),
+        '/login': (context) => const LoginStl(),
       },
     );
   }
@@ -68,22 +70,29 @@ class _PerfilStfState extends State<PerfilStf> {
     }
   }
 
+  Future<void> _logout() async {
+    await Supabase.instance.client.auth.signOut();
+    Navigator.of(context).pushNamed('/login');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Center(
-        child: Text(
-          'MELP',
-          style: TextStyle(color: Colors.white),
-        )), 
+      appBar: AppBar(
+        title: const Center(
+          child: Text(
+            'MELP',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
         backgroundColor: Colors.black,
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back_rounded,
             size: 32,
             color: Colors.white,
-          ), 
-          onPressed: (){
+          ),
+          onPressed: () {
             Navigator.of(context).pushNamed('/home');
           },
         ),
@@ -103,14 +112,61 @@ class _PerfilStfState extends State<PerfilStf> {
           ),
         ],
       ),
-      body: Center(
-        child: errorMessage != null
-            ? Text(errorMessage!, style: TextStyle(color: Colors.red))
-            : userName != null
-                ? Text('Nome: $userName')
-                : userId != null
-                    ? Text('Carregando nome...')
-                    : Text('Carregando...'),
+      body: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextButton(
+                  onPressed: _logout,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                      const Color.fromARGB(255, 129, 47, 47),
+                    ),
+                  ),
+                  child: const Text(
+                    'Logout',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 24),
+          Row(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: 100,
+                height: 100,
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 104, 104, 104),
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 4,
+                  ),
+                ),
+                child: const Icon(
+                  Icons.person,
+                  size: 64,
+                  color: Colors.white,
+                ),
+              ),
+              SizedBox(width: 16,),
+              errorMessage != null
+                  ? Text(errorMessage!, style: const TextStyle(color: Colors.red))
+                  : userName != null
+                      ? Text(
+                        'Nome: $userName',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      )
+                      : userId != null
+                          ? const Text('Carregando nome...')
+                          : const Text('Carregando...'),
+            ],
+          ),
+        ],
       ),
     );
   }

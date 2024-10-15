@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/perfil.dart';
@@ -5,47 +7,43 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AulaStl extends StatelessWidget {
   const AulaStl({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const AulaStf(),
       routes: {
         '/home': (context) => const HomeStl(),
         '/perfil': (context) => const PerfilStl(),
       },
+      home: const AulaStf(),
     );
   }
 }
 
 class AulaStf extends StatefulWidget {
   const AulaStf({super.key});
-
   @override
   State<AulaStf> createState() => _AulaStfState();
 }
 
 class _AulaStfState extends State<AulaStf> {
   final TextEditingController _nomeController = TextEditingController();
-  List<dynamic> aulas = []; // Lista para armazenar as aulas
+  List<dynamic> aulas = [];
 
   @override
   void initState() {
     super.initState();
-    _loadAulas(); // Carrega as aulas ao iniciar
+    _loadAulas();
   }
 
   Future<void> novaAula() async {
     final nome = _nomeController.text.trim();
-    
     if (nome.isNotEmpty) {
       final response = await Supabase.instance.client.from('aulas').insert({
         'nome': nome,
       }).execute();
-
       if (response.status == 200) {
-        _loadAulas(); // Atualiza a lista de aulas
+        _loadAulas();
         _nomeController.clear();
         _loadAulas();
       } else {
@@ -58,7 +56,7 @@ class _AulaStfState extends State<AulaStf> {
     final response = await Supabase.instance.client.from('aulas').select().execute();
     if (response.status == 200) {
       setState(() {
-        aulas = response.data; // Armazena as aulas na lista
+        aulas = response.data;
       });
     } else {
       
@@ -67,12 +65,12 @@ class _AulaStfState extends State<AulaStf> {
 
   Future<void> atualizarAula(String aulaId, String novoNome) async {
     await Supabase.instance.client.from('aulas').update({'nome': novoNome}).eq('id', aulaId).execute();
-    _loadAulas(); // Atualiza a lista após a edição
+    _loadAulas();
   }
 
   Future<void> deletarAula(String aulaId) async {
     await Supabase.instance.client.from('aulas').delete().eq('id', aulaId).execute();
-    _loadAulas(); // Atualiza a lista após a exclusão
+    _loadAulas();
   }
 
   @override

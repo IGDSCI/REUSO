@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/home.dart';
@@ -312,7 +314,6 @@ class _ExercicioStfState extends State<ExercicioStf> {
                                   IconButton(
                                     icon: const Icon(Icons.edit),
                                     onPressed: () {
-                                      // Mostrar dialogo para editar o exercício
                                       showDialog(
                                         context: context,
                                         builder: (context) {
@@ -460,7 +461,6 @@ class _ExercicioStfState extends State<ExercicioStf> {
                                             actions: [
                                               TextButton(
                                                 onPressed: () {
-                                                  // Atualizar o exercício
                                                   atualizarExercicio(exercicioId, {
                                                     'enunciado': enunciadoController.text,
                                                     'opcaoA': opcaoAController.text,

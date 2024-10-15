@@ -116,16 +116,43 @@ class _AulaStfState extends State<AulaStf> {
         child: Column(
           children: [
             TextField(
-              controller: _nomeController,
-              decoration: const InputDecoration(
-                hintText: 'Nome da Aula',
+                controller: _nomeController,
+                cursorColor: Colors.black,
+                decoration: const InputDecoration(
+                  hintText: 'Nome da Aula',
+                  border: OutlineInputBorder(),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(179, 143, 137, 137),
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(6)),
+                    borderSide: BorderSide(
+                      color: Color.fromARGB(179, 143, 137, 137),
+                    ),
+                  )
+                ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: novaAula,
-              child: const Text('Adicionar Aula'),
-            ),
-            const SizedBox(height: 20),
+
+              const SizedBox(height: 8),
+
+            SizedBox(
+                width: 200,
+                child: ElevatedButton(
+                  onPressed: novaAula,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 33, 54, 243)),
+                    elevation: MaterialStateProperty.all<double>(0),
+                  ),
+                  child: const Text(
+                    'Adicionar aula',
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
                 itemCount: aulas.length,
@@ -134,6 +161,7 @@ class _AulaStfState extends State<AulaStf> {
                   final aulaId = aula['id'].toString();
 
                   return Card(
+                    color: Color.fromARGB(255, 158, 157, 157),
                     margin: const EdgeInsets.symmetric(vertical: 8),
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
@@ -149,29 +177,56 @@ class _AulaStfState extends State<AulaStf> {
                               IconButton(
                                 icon: const Icon(Icons.edit),
                                 onPressed: () {
-                                  // Mostrar diálogo para editar a aula
                                   showDialog(
                                     context: context,
                                     builder: (context) {
                                       final nomeController = TextEditingController(text: aula['nome']);
                                       return AlertDialog(
-                                        title: const Text('Editar Aula'),
-                                        content: TextField(
+                                        title: const Text('Editar aula'),
+                                        content: 
+                                        TextField(
                                           controller: nomeController,
-                                          decoration: const InputDecoration(hintText: 'Nome da Aula'),
+                                          cursorColor: Colors.black,
+                                          decoration: const InputDecoration(
+                                            hintText: 'Nome da Aula',
+                                            border: OutlineInputBorder(),
+                                            enabledBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(6)),
+                                              borderSide: BorderSide(
+                                                color: Color.fromARGB(179, 143, 137, 137),
+                                              ),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderRadius: BorderRadius.all(Radius.circular(6)),
+                                              borderSide: BorderSide(
+                                                color: Color.fromARGB(179, 143, 137, 137),
+                                              ),
+                                            )
+                                          ),
                                         ),
                                         actions: [
                                           TextButton(
                                             onPressed: () {
-                                              // Atualizar a aula
                                               atualizarAula(aulaId, nomeController.text);
                                               Navigator.pop(context);
                                             },
-                                            child: const Text('Salvar'),
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 50, 97, 52)),
+                                            ),
+                                            child: const Text(
+                                              'Salvar',
+                                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                              ),
                                           ),
                                           TextButton(
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 129, 47, 47)),
+                                            ),
                                             onPressed: () => Navigator.pop(context),
-                                            child: const Text('Cancelar'),
+                                            child: const Text(
+                                              'Cancelar',
+                                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ],
                                       );
@@ -190,16 +245,29 @@ class _AulaStfState extends State<AulaStf> {
                                         content: const Text('Você tem certeza?'),
                                         actions: [
                                           TextButton(
-                                            onPressed: () {
-                                              Navigator.pop(context, false);
-                                            },
-                                            child: const Text('Cancelar'),
-                                          ),
-                                          TextButton(
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 50, 97, 52)),
+                                            ),
                                             onPressed: () {
                                               Navigator.pop(context, true);
                                             },
-                                            child: const Text('Deletar'),
+                                            child: const Text(
+                                              'Deletar',
+                                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+
+                                          TextButton(
+                                            style: ButtonStyle(
+                                              backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 129, 47, 47)),
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context, false);
+                                            },
+                                            child: const Text(
+                                              'Cancelar',
+                                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ],
                                       );

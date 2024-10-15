@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_application_1/aula.dart';
+import 'package:flutter_application_1/custom_widgets/card.dart';
 import 'package:flutter_application_1/exercicio.dart';
 import 'package:flutter_application_1/login.dart';
 import 'package:flutter_application_1/perfil.dart';
@@ -67,110 +68,43 @@ class _HomeStfState extends State<HomeStf> {
           ),
         ],
       ),
-      body: Row(mainAxisAlignment: MainAxisAlignment.center,
+      body: const Row(mainAxisAlignment: MainAxisAlignment.center,
         children: [
         Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed('/aula');
-              },
-              child: Material(
-                elevation: 10,
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 107, 33, 243),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'AULA',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
+          
+           CustomClickableCard(
+            text: 'AULA',
+            backgroundColor: Color.fromARGB(255, 107, 33, 243),
+            routeName: '/aula',
           ),
 
 
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
 
-          MouseRegion(
-            cursor: SystemMouseCursors.click,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed('/exercicio');
-              },
-              child: Material(
-                elevation: 10, 
-                borderRadius: BorderRadius.circular(8),
-                child: Container(
-                  height: 150,
-                  width: 150,
-                  decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 33, 54, 243),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: const Center(
-                    child: Text(
-                      'EXERCÍCIOS',
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          )
+          CustomClickableCard(
+            text: 'EXERCÍCIOS',
+            backgroundColor: Color.fromARGB(255, 33, 54, 243),
+            routeName: '/exercicio',
+          ),
 
         ],),
 
-        const SizedBox(width: 24),
+        SizedBox(width: 24),
 
         Column(mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          Material(
-            elevation: 10,
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              height: 150,
-              width: 150,  
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)), 
-                color: Color.fromARGB(255, 33, 54, 243),
-              ),
-              child: const Center(child: Text(
-                'SUPORTE',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                )
-              ),
-            ),
+
+          CustomClickableCard(
+            text: 'SUPORTE',
+            backgroundColor: Color.fromARGB(255, 33, 54, 243),
           ),
 
+          SizedBox(height: 24),
 
-          const SizedBox(height: 24),
-
-          Material(
-            elevation: 10,
-            borderRadius: BorderRadius.circular(8),
-            child: Container(
-              height: 150,
-              width: 150,  
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)), 
-                color: Color.fromARGB(255, 107, 33, 243),
-              ),
-              child: const Center(child: Text(
-                'AJUSTES',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                )
-              ),
-            ),
+          CustomClickableCard(
+            text: 'AJUSTES',
+            backgroundColor: Color.fromARGB(255, 107, 33, 243),
           ),
         ],)
       ],),

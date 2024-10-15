@@ -1,6 +1,7 @@
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/custom_widgets/text_field.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/perfil.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -112,25 +113,9 @@ class _AulaStfState extends State<AulaStf> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TextField(
+            CustomTextField(
               controller: _nomeController,
-              cursorColor: Colors.black,
-              decoration: const InputDecoration(
-                hintText: 'Nome da Aula',
-                border: OutlineInputBorder(),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                  borderSide: BorderSide(
-                    color: Color.fromARGB(179, 143, 137, 137),
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                  borderSide: BorderSide(
-                    color: Color.fromARGB(179, 143, 137, 137),
-                  ),
-                )
-              ),
+              hintText: 'Nome da Aula',
             ),
 
             const SizedBox(height: 8),
@@ -182,25 +167,9 @@ class _AulaStfState extends State<AulaStf> {
                                       return AlertDialog(
                                         title: const Text('Editar aula'),
                                         content: 
-                                        TextField(
+                                        CustomTextField(
                                           controller: nomeController,
-                                          cursorColor: Colors.black,
-                                          decoration: const InputDecoration(
-                                            hintText: 'Nome da Aula',
-                                            border: OutlineInputBorder(),
-                                            enabledBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(6)),
-                                              borderSide: BorderSide(
-                                                color: Color.fromARGB(179, 143, 137, 137),
-                                              ),
-                                            ),
-                                            focusedBorder: OutlineInputBorder(
-                                              borderRadius: BorderRadius.all(Radius.circular(6)),
-                                              borderSide: BorderSide(
-                                                color: Color.fromARGB(179, 143, 137, 137),
-                                              ),
-                                            )
-                                          ),
+                                          hintText: 'Nome da Aula',
                                         ),
                                         actions: [
                                           TextButton(

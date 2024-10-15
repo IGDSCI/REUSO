@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/custom_widgets/text_field.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/login.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -85,71 +86,23 @@ class _CadastroStfState extends State<CadastroStf> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
                 ),
                 const SizedBox(height: 16),
-                TextField(
+                CustomTextField(
                   controller: _emailController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    hintText: 'Email',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.email),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                  ),
+                  hintText: 'Email',
+                  prefixIcon: Icons.email,
                 ),
                 const SizedBox(height: 16),
-                TextField(
+                CustomTextField(
                   controller: _passwordController,
-                  cursorColor: Colors.black,
+                  hintText: 'Senha',
+                  prefixIcon: Icons.lock,
                   obscureText: true,
-                  decoration: const InputDecoration(
-                    hintText: 'Senha',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.lock),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                  ),
                 ),
                 const SizedBox(height: 16),
-                TextField(
+                CustomTextField(
                   controller: _usuarioController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    hintText: 'Insira seu nome de usuário',
-                    border: OutlineInputBorder(),
-                    prefixIcon: Icon(Icons.person),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                  ),
+                  hintText: 'Insira seu nome de usuário',
+                  prefixIcon: Icons.person,
                 ),
                 const SizedBox(height: 16),
                 SizedBox(

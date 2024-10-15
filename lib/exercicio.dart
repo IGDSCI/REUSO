@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_1/custom_widgets/text_field.dart';
 import 'package:flutter_application_1/home.dart';
 import 'package:flutter_application_1/perfil.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -135,133 +136,38 @@ class _ExercicioStfState extends State<ExercicioStf> {
             children: [
               const SizedBox(height: 16),
 
-              TextField(
-                  controller: _enunciadoController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    label: Text(
-                      'Enunciado',
-                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                    ),
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    )
-                  ),
-                ),
+              CustomTextField(
+                controller: _enunciadoController,
+                labelText: 'Enunciado',
+              ),
           
                 const SizedBox(height: 16),
           
-              TextField(
-                  controller: _opcaoAController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    label: Text(
-                      'Opção A',
-                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                    ),
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    )
-                  ),
-                ),
+              CustomTextField(
+                controller: _opcaoAController,
+                labelText: 'Opção A',
+              ),
+
+              const SizedBox(height: 16),
+          
+              CustomTextField(
+                controller: _opcaoBController,
+                labelText: 'Opção B',
+              ),
           
                 const SizedBox(height: 16),
           
-              TextField(
-                  controller: _opcaoBController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    label: Text(
-                      'Opção B',
-                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                    ),
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    )
-                  ),
-                ),
+              CustomTextField(
+                controller: _opcaoCController,
+                labelText: 'Opção C',
+              ),
           
                 const SizedBox(height: 16),
           
-              TextField(
-                  controller: _opcaoCController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    label: Text(
-                      'Opção C',
-                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                    ),
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    )
-                  ),
-                ),
-          
-                const SizedBox(height: 16),
-          
-              TextField(
-                  controller: _opcaoDController,
-                  cursorColor: Colors.black,
-                  decoration: const InputDecoration(
-                    label: Text(
-                      'Opção D',
-                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                    ),
-                    border: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                      borderSide: BorderSide(
-                        color: Color.fromARGB(179, 143, 137, 137),
-                      ),
-                    )
-                  ),
-                ),
+              CustomTextField(
+                controller: _opcaoDController,
+                labelText: 'Opção D',
+              ),
           
                 const SizedBox(height: 16),
           
@@ -329,132 +235,37 @@ class _ExercicioStfState extends State<ExercicioStf> {
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
 
-                                                TextField(
+                                                CustomTextField(
                                                   controller: enunciadoController,
-                                                  cursorColor: Colors.black,
-                                                  decoration: const InputDecoration(
-                                                    label: Text(
-                                                      'Enunciado',
-                                                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    )
-                                                  ),
+                                                  labelText: 'Enunciado',
                                                 ),
 
                                                 const SizedBox(height: 16),
 
-                                                TextField(
+                                                CustomTextField(
                                                   controller: opcaoAController,
-                                                  cursorColor: Colors.black,
-                                                  decoration: const InputDecoration(
-                                                    label: Text(
-                                                      'Opcao A',
-                                                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    )
-                                                  ),
+                                                  labelText: 'Opção A',
                                                 ),
 
                                                 const SizedBox(height: 16),
 
-                                                TextField(
+                                                CustomTextField(
                                                   controller: opcaoBController,
-                                                  cursorColor: Colors.black,
-                                                  decoration: const InputDecoration(
-                                                    label: Text(
-                                                      'Opcao B',
-                                                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    )
-                                                  ),
+                                                  labelText: 'Opção B',
                                                 ),
 
                                                 const SizedBox(height: 16),
 
-                                                TextField(
+                                                CustomTextField(
                                                   controller: opcaoCController,
-                                                  cursorColor: Colors.black,
-                                                  decoration: const InputDecoration(
-                                                    label: Text(
-                                                      'Opcao C',
-                                                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    )
-                                                  ),
+                                                  labelText: 'Opção C',
                                                 ),
 
                                                 const SizedBox(height: 16),
 
-                                                TextField(
+                                                CustomTextField(
                                                   controller: opcaoDController,
-                                                  cursorColor: Colors.black,
-                                                  decoration: const InputDecoration(
-                                                    label: Text(
-                                                      'Opcao D',
-                                                      style: TextStyle(color: Color.fromARGB(255, 104, 104, 104)),
-                                                    ),
-                                                    border: OutlineInputBorder(),
-                                                    enabledBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    ),
-                                                    focusedBorder: OutlineInputBorder(
-                                                      borderRadius: BorderRadius.all(Radius.circular(6)),
-                                                      borderSide: BorderSide(
-                                                        color: Color.fromARGB(179, 143, 137, 137),
-                                                      ),
-                                                    )
-                                                  ),
+                                                  labelText: 'Opção D',
                                                 ),
                                               ],
                                             ),
